@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from './Components/Navbar.jsx';
 import Login from './Pages/LoginPage.jsx';
 import Dashboard from './Pages/DashboardPage.jsx';
+import Register from './Pages/RegisterPage.jsx';
 
 const router = createBrowserRouter([
   {
