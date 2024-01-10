@@ -14,6 +14,11 @@ const ProtectedRoute = () => {
   return token ? <Outlet /> : <Navigate to="/login" />;
 };
 
+const PreventIfAuthenticated = () => {
+  const token = getToken();
+  return token ? <Navigate to="/dashboard" /> : <Outlet />;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,7 +26,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element:  <Login />,
+    element: <PreventIfAuthenticated />,
+    children: [{ index: true, element: <Login /> }]
   },
   {
     path: "/register",
