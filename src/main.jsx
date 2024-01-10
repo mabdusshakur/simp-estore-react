@@ -6,6 +6,13 @@ import Navbar from './Components/Navbar.jsx';
 import Login from './Pages/LoginPage.jsx';
 import Dashboard from './Pages/DashboardPage.jsx';
 import Register from './Pages/RegisterPage.jsx';
+import { Navigate, Outlet } from "react-router-dom";
+import { getToken } from "./authManager";
+
+const ProtectedRoute = () => {
+  const token = getToken();
+  return token ? <Outlet /> : <Navigate to="/login" />;
+};
 
 const router = createBrowserRouter([
   {
@@ -14,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element:  <Login />,
   },
   {
     path: "/register",
@@ -22,7 +29,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: <ProtectedRoute />,
+    children: [{ index: true, element: <Dashboard /> },],
   },
 ]);
 
