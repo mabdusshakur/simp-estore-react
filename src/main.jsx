@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <Route path="/admin/dashboard" element={<ProtectedRoute />} >
           <Route index element={<Sidebar />} />
-          <Route index element={<Dashboard />} />
+          <Route element={<Dashboard />} />
         </Route>
 
         <Route path="/admin/dashboard/category" element={<ProtectedRoute />} >
