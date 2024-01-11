@@ -8,7 +8,7 @@ const navigation = [
     { name: 'Dashboard', href: '/dashboard', current: false, visible: true },
     { name: 'Login', href: '/login', current: false, visible: true },
     { name: 'Register', href: '/register', current: false, visible: true },
-    { name: 'Logout', href: '/logout', current: false, visible: true },
+    { name: 'Logout', href: '/logout', current: false, visible: false },
 ]
 
 function classNames(...classes) {
