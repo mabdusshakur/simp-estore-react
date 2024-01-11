@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<PreventIfAuthenticated />} >
           <Route index element={<Register />} />
         </Route>
-        <Route path="/dashboard" element={<ProtectedRoute />} >
+        <Route path="/admin/dashboard" element={<ProtectedRoute />} >
           <Route index element={<Dashboard />} />
         </Route>
       </Routes>

@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { isAdmin, isLoggedIn } from "../authManager";
 const navigation = [
     { name: 'Home', href: '/', current: false, visible: true },
-    { name: 'Dashboard', href: '/dashboard', current: false, visible: true, admin: true },
+    { name: 'Dashboard', href: '/admin/dashboard', current: false, visible: true, admin: true },
     { name: 'Login', href: '/login', current: false, visible: true },
     { name: 'Register', href: '/register', current: false, visible: true },
     { name: 'Logout', href: '/logout', current: false, visible: false },
