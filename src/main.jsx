@@ -16,7 +16,7 @@ const ProtectedRoute = () => {
 
 const PreventIfAuthenticated = () => {
   const token = getToken();
-  return token ? <Navigate to="/dashboard" /> : <Outlet />;
+  return token ? <Navigate to="/" /> : <Outlet />;
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
