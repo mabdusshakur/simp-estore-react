@@ -11,7 +11,7 @@ function Category() {
         }, [page]);
 
         const fetchData = () => {
-            http.get(`/categories?paginate=2&page=${page}`).then((res) => {
+            http.get(`/categories?paginate=5&page=${page}`).then((res) => {
                 const response = res.data.data;
                 setCategories(response);
                 setMeta(res.data.meta);
