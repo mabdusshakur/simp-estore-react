@@ -26,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<div>Home</div>} />
         <Route path="/login" element={<PreventIfAuthenticated />} >
@@ -36,18 +37,24 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Route>
 
         <Route path="/admin/dashboard" element={<ProtectedRoute />} >
-          <Route index element={<Sidebar />} />
-          <Route element={<Dashboard />} />
+          <Route index element={<>
+            <Sidebar />
+            <Dashboard />
+          </>} />
         </Route>
 
-        <Route path="/admin/dashboard/category" element={<ProtectedRoute />} >
-          <Route index element={<Sidebar />} />
-          <Route index element={<Category />} />
+        <Route  element={<ProtectedRoute />} >
+          <Route index element={<>
+            <Sidebar />
+            <Category />
+          </>} />
         </Route>
 
         <Route path="/admin/dashboard/sub-category" element={<ProtectedRoute />} >
-          <Route index element={<Sidebar />} />
-          <Route index element={<SubCategory />} />
+          <Route index element={<>
+            <Sidebar />
+            <SubCategory />
+          </>} />
         </Route>
 
       </Routes>
