@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { FaBoxOpen } from "react-icons/fa";
 import { FaBoxesStacked } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 function Sidebar() {
     const [nav, setNav] = useState(false);
 
     const menuItems = [
-        { icon: <FaBoxOpen size={25} className="mr-4" />, text: "Category" },
-        { icon: <FaBoxesStacked size={25} className="mr-4" />, text: "SubCategory" },
+        { icon: <FaBoxOpen size={25} className="mr-4" />, text: "Category", href: "/admin/dashboard/category" },
+        { icon: <FaBoxesStacked size={25} className="mr-4" />, text: "SubCategory", href: "/admin/dashboard/sub-category" },
     ];
     return (
         <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4 shadow-sm">
@@ -31,12 +32,14 @@ function Sidebar() {
                 <AiOutlineClose onClick={() => setNav(!nav)} size={30} className="absolute right-4 top-4 cursor-pointer" />
                 <nav>
                     <ul className="flex flex-col p-4 text-gray-800">
-                        {menuItems.map(({ icon, text }, index) => {
+                        {menuItems.map(({ icon, text, href }, index) => {
                             return (
                                 <div key={index} className=" py-4">
-                                    <li className="text-sm flex cursor-pointer  w-[80%] rounded-full mx-auto p-2 hover:text-blue-500">
-                                        {icon} {text}
-                                    </li>
+                                    <Link to={href}>
+                                        <li className="text-sm flex cursor-pointer  w-[80%] rounded-full mx-auto p-2 hover:text-blue-500">
+                                            {icon} {text}
+                                        </li>
+                                    </Link>
                                 </div>
                             );
                         })}
