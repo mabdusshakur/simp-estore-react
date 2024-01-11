@@ -32,6 +32,10 @@ function Category() {
             }
         };
 
+        const handlePageClick = (pageNumber) => {
+            setPage(pageNumber);
+        };
+
         return (
             <>
                 <div className="container mx-auto px-4">
@@ -94,7 +98,13 @@ function Category() {
                                 <li>
                                     <button onClick={handlePreviousPage} className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" disabled={page === 1}>Previous</button>
                                 </li>
-
+                                {
+                                    Array.from({ length: meta.last_page }, (_, index) => (
+                                        <li key={index}>
+                                            <button onClick={() => handlePageClick(index + 1)} className={`flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${page === index + 1 ? 'font-semibold' : ''}`}>{index + 1}</button>
+                                        </li>
+                                    ))
+                                }
                                 <li>
                                     <button onClick={handleNextPage} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" disabled={page === meta.last_page}>Next</button>
                                 </li>
