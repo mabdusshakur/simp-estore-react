@@ -41,22 +41,15 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Sidebar />
             <Dashboard />
           </>} />
-        </Route>
-
-        <Route  element={<ProtectedRoute />} >
-          <Route index element={<>
+          <Route path="/admin/dashboard/category" element={<>
             <Sidebar />
             <Category />
           </>} />
-        </Route>
-
-        <Route path="/admin/dashboard/sub-category" element={<ProtectedRoute />} >
-          <Route index element={<>
+          <Route path="/admin/dashboard/sub-category" element={<>
             <Sidebar />
             <SubCategory />
           </>} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
