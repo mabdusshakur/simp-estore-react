@@ -2,10 +2,10 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
-import { isLoggedIn } from "../authManager";
+import { isAdmin, isLoggedIn } from "../authManager";
 const navigation = [
     { name: 'Home', href: '/', current: false, visible: true },
-    { name: 'Dashboard', href: '/dashboard', current: false, visible: true },
+    { name: 'Dashboard', href: '/dashboard', current: false, visible: true, admin: true },
     { name: 'Login', href: '/login', current: false, visible: true },
     { name: 'Register', href: '/register', current: false, visible: true },
     { name: 'Logout', href: '/logout', current: false, visible: false },
@@ -31,6 +31,13 @@ export default function Navbar() {
                 pathname.visible = false;
             } else {
                 pathname.visible = true;
+            }
+        });
+    }
+    if(!isAdmin()){
+        navigation.forEach((pathname) => {
+            if (pathname.admin) {
+                pathname.visible = false;
             }
         });
     }
