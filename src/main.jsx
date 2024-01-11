@@ -8,6 +8,8 @@ import Dashboard from './Pages/DashboardPage.jsx';
 import Register from './Pages/RegisterPage.jsx';
 import { Navigate, Outlet } from "react-router-dom";
 import { getToken } from "./authManager";
+import Category from './Pages/CategoryPage.jsx';
+import SubCategory from './Pages/SubCategoryPage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -31,9 +33,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<PreventIfAuthenticated />} >
           <Route index element={<Register />} />
         </Route>
+
         <Route path="/admin/dashboard" element={<ProtectedRoute />} >
           <Route index element={<Dashboard />} />
         </Route>
+        
+        <Route path="/admin/dashboard/category" element={<ProtectedRoute />} >
+          <Route index element={<Category />} />
+        </Route>
+
+        <Route path="/admin/dashboard/sub-category" element={<ProtectedRoute />} >
+          <Route index element={<SubCategory />} />
+        </Route>
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
