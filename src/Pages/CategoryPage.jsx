@@ -1,5 +1,3 @@
-import Sidebar from "../Components/SideBar";
-
 function Category() {
     return (
         <>
