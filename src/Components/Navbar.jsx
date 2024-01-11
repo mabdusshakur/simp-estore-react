@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
     { name: 'Home', href: '/', current: false },
@@ -16,6 +16,16 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const current = useLocation().pathname;
+    
+    navigation.forEach((pathname) => {
+        if (pathname.href === current) {
+            pathname.current = true;
+        }else{
+            pathname.current = false;
+        }
+    });
+    
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
