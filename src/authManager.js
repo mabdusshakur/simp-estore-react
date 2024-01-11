@@ -18,3 +18,10 @@ export const setUser = (newUser) => {
 export const getUser = () => {
   return user;
 };
+
+export const isLoggedIn = () => {
+  if (token && user) {
+    return true;
+  } 
+  return false;
+};
