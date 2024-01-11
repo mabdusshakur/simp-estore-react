@@ -25,3 +25,10 @@ export const isLoggedIn = () => {
   } 
   return false;
 };
+
+export const isAdmin = () => {
+  if (user && user.role === 'admin') {
+    return true;
+  }
+  return false;
+};
