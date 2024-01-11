@@ -1,11 +1,13 @@
-import {getUser} from '../authManager';
+import { Route, Routes } from 'react-router-dom';
+import Sidebar from '../Components/SideBar';
+import { getUser } from '../authManager';
+import Category from './CategoryPage';
+import SubCategory from './SubCategoryPage';
+
 function Dashboard() {
-    const user = getUser();
     return (
         <>
             
-            <h1>Dashboard</h1>
-            <h2>{user.name}</h2>
         </>
     );
 }
