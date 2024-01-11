@@ -19,31 +19,10 @@ const PreventIfAuthenticated = () => {
   return token ? <Navigate to="/dashboard" /> : <Outlet />;
 };
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <div>Home</div>,
-//   },
-//   {
-//     path: "/login",
-//     element: <PreventIfAuthenticated />,
-//     children: [{ index: true, element: <Login /> }]
-//   },
-//   {
-//     path: "/register",
-//     element: <Register />,
-//   },
-//   {
-//     path: "/dashboard",
-//     element: <ProtectedRoute />,
-//     children: [{ index: true, element: <Dashboard /> },],
-//   },
-// ]);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<div>Home</div>} />
         <Route path="/login" element={<PreventIfAuthenticated />} >
