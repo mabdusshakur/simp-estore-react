@@ -25,7 +25,15 @@ export default function Navbar() {
             pathname.current = false;
         }
     });
-
+    if (isLoggedIn) {
+        navigation.forEach((pathname) => {
+            if (pathname.href === '/login' || pathname.href === '/register') {
+                pathname.visible = false;
+            } else {
+                pathname.visible = true;
+            }
+        });
+    }
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
