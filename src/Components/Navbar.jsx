@@ -2,13 +2,13 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
-
+import { isLoggedIn } from "../authManager";
 const navigation = [
-    { name: 'Home', href: '/', current: false },
-    { name: 'Dashboard', href: '/dashboard', current: false },
-    { name: 'Login', href: '/login', current: false },
-    { name: 'Register', href: '/register', current: false },
-    { name: 'Logout', href: '/logout', current: false },
+    { name: 'Home', href: '/', current: false, visible: true },
+    { name: 'Dashboard', href: '/dashboard', current: false, visible: true },
+    { name: 'Login', href: '/login', current: false, visible: true },
+    { name: 'Register', href: '/register', current: false, visible: true },
+    { name: 'Logout', href: '/logout', current: false, visible: true },
 ]
 
 function classNames(...classes) {
@@ -17,15 +17,15 @@ function classNames(...classes) {
 
 export default function Navbar() {
     const current = useLocation().pathname;
-    
+
     navigation.forEach((pathname) => {
         if (pathname.href === current) {
             pathname.current = true;
-        }else{
+        } else {
             pathname.current = false;
         }
     });
-    
+
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -52,9 +52,11 @@ export default function Navbar() {
 
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <Link key={item.name} to={item.href} className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium')} aria-current={item.current ? 'page' : undefined}>
-                                                {item.name}
-                                            </Link>
+                                            item.visible ? (
+                                                <Link key={item.name} to={item.href} className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'rounded-md px-3 py-2 text-sm font-medium')} aria-current={item.current ? 'page' : undefined}>
+                                                    {item.name}
+                                                </Link>
+                                            ) : null
                                         ))}
                                     </div>
                                 </div>
@@ -106,9 +108,10 @@ export default function Navbar() {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
                             {navigation.map((item) => (
-                                <Link key={item.name} as="a" href={item.href} className={classNames(item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")} aria-current={item.current ? "page" : undefined}>
-                                    {item.name}
-                                </Link>
+                                item.visible ? (
+                                    <Link key={item.name} as="a" href={item.href} className={classNames(item.current ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")} aria-current={item.current ? "page" : undefined}>
+                                        {item.name}
+                                    </Link>) : null
                             ))}
                         </div>
                     </Disclosure.Panel>
