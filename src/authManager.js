@@ -1,9 +1,9 @@
-let token = localStorage.getItem('token');
-let user = JSON.parse(localStorage.getItem('user'));
+let token = localStorage.getItem("token");
+let user = JSON.parse(localStorage.getItem("user"));
 
 export const setToken = (newToken) => {
   token = newToken;
-  localStorage.setItem('token', newToken);
+  localStorage.setItem("token", newToken);
 };
 
 export const getToken = () => {
@@ -12,7 +12,7 @@ export const getToken = () => {
 
 export const setUser = (newUser) => {
   user = newUser;
-  localStorage.setItem('user', JSON.stringify(newUser));
+  localStorage.setItem("user", JSON.stringify(newUser));
 };
 
 export const getUser = () => {
@@ -22,13 +22,11 @@ export const getUser = () => {
 export const isLoggedIn = () => {
   if (token && user) {
     return true;
-  } 
+  }
   return false;
 };
 
 export const isAdmin = () => {
-  if (user && user.role === 'admin') {
-    return true;
-  }
-  return false;
+  const user = getUser();
+  return user.is_admin;
 };
