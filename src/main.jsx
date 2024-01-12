@@ -46,7 +46,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Sidebar />
             <Category />
           </>} />
-          <Route path="/admin/dashboard/category/:id" element={<>
+          <Route path="/admin/dashboard/category/edit/:id" element={<>
             <Sidebar />
             <EditCategoryComponent />
           </>} />
