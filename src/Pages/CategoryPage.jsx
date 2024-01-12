@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import http from "../axios";
+import AddCategoryComponent from "../Components/AddCategoryComponent";
 
 function Category() {
     const [categories, setCategories] = useState([]);
@@ -38,6 +39,7 @@ function Category() {
 
     return (
         <>
+            <AddCategoryComponent />
             <div className="container mx-auto px-4">
                 <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
