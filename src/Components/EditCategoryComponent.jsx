@@ -25,6 +25,7 @@ function EditCategoryComponent() {
             if (res.data.status === 'success') {
                 setCategoryName('');
                 alert('Category Updated Successfully');
+                navigation(-1);
             }
         }).catch((err) => {
             console.log(err);
