@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import http from "../axios";
 import AddCategoryComponent from "../Components/AddCategoryComponent";
+import { Link } from "react-router-dom";
 
 function Category() {
     const [categories, setCategories] = useState([]);
@@ -95,7 +96,7 @@ function Category() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-sm">
-                                                <button className="text-blue-500 hover:text-blue-700 px-1">Edit</button>
+                                                <Link to={ '/admin/dashboard/category/edit/' + category.id } className="text-blue-500 hover:text-blue-700 px-1">Edit</Link>
                                                 <button className="text-red-500 hover:text-red-700 px-1" onClick={handleDeleteCategory}>Delete</button>
                                             </td>
                                         </tr>
