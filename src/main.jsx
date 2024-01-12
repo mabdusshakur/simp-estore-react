@@ -11,6 +11,7 @@ import { getToken } from "./authManager";
 import Category from './Pages/CategoryPage.jsx';
 import SubCategory from './Pages/SubCategoryPage.jsx';
 import Sidebar from './Components/SideBar.jsx';
+import EditCategoryComponent from './Components/EditCategoryComponent.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -44,6 +45,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/admin/dashboard/category" element={<>
             <Sidebar />
             <Category />
+          </>} />
+          <Route path="/admin/dashboard/category/:id" element={<>
+            <Sidebar />
+            <EditCategoryComponent />
           </>} />
           <Route path="/admin/dashboard/sub-category" element={<>
             <Sidebar />
