@@ -21,7 +21,14 @@ function AddSubCategoryComponent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(categoryId);
+        http.post('/admin/sub-categories', { name: subcategoryName, category_id : categoryId }).then((res) => {
+            if (res.data.status === 'success') {
+                setSubCategoryName('');
+                setCategoryId('');
+                alert('SubCategory Added Successfully');
+            }
+        }).catch((err) => { console.log(err); });
     }
     return (
         <>
