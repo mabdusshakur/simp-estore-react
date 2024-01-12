@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import http from '../axios';
 
 function EditCategoryComponent() {
     const { id } = useParams();
     const [categoryName, setCategoryName] = useState('');
-    
+    const navigation = useNavigate();
     useEffect(() => {
         fetchData();
     }, []);
