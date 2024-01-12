@@ -59,7 +59,13 @@ function SubCategory() {
                             {
                                 subcategories.map((subcategory, index) => {
                                     const handleDeleteSubCategory = (event) => {
-                                        
+                                        const subcategoryId = subcategory.id;
+                                        console.log(`Deleting Sub-category with ID: ${subcategoryId}`);
+                                        http.delete(`/admin/sub-categories/${subcategoryId}`).then((res) => {
+                                            console.log("SubCategory deleted successfully");
+                                        }).catch((err) => {
+                                            console.log("Error deleting Subcategory:", err.response.data.message);
+                                        });
                                     };
                                     return (
                                         <tr key={index} className="bg-white dark:bg-gray-700">
