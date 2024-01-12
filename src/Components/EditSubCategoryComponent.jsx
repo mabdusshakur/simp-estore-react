@@ -30,10 +30,10 @@ function EditCategoryComponent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(categoryId + ' - ' + subcategoryName);
         http.put(`/admin/sub-categories/${id}`, { name: subcategoryName, category_id : categoryId }).then((res) => {
             if (res.data.status === 'success') {
                 setSubCategoryName('');
+                setCategoryId('');
                 alert('SubCategory Updated Successfully');
                 navigation(-1);
             }
