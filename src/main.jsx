@@ -12,6 +12,7 @@ import Category from './Pages/CategoryPage.jsx';
 import SubCategory from './Pages/SubCategoryPage.jsx';
 import Sidebar from './Components/SideBar.jsx';
 import EditCategoryComponent from './Components/EditCategoryComponent.jsx';
+import EditSubCategoryComponent from './Components/EditSubCategoryComponent.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -53,6 +54,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/admin/dashboard/sub-category" element={<>
             <Sidebar />
             <SubCategory />
+          </>} />
+          <Route path="/admin/dashboard/sub-category/edit/:id" element={<>
+            <Sidebar />
+            <EditSubCategoryComponent />
           </>} />
         </Route>
       </Routes>
