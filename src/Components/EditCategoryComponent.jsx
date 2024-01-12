@@ -5,7 +5,7 @@ import http from '../axios';
 function EditCategoryComponent() {
     const { id } = useParams();
     const [categoryName, setCategoryName] = useState('');
-
+    
     useEffect(() => {
         fetchData();
     }, []);
@@ -21,7 +21,14 @@ function EditCategoryComponent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-      
+        http.put(`/admin/categories/${id}`, { name: categoryName }).then((res) => {
+            if (res.data.status === 'success') {
+                setCategoryName('');
+                alert('Category Updated Successfully');
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     return (
