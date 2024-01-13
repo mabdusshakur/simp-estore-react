@@ -70,7 +70,8 @@ function Product() {
                                         <tr key={index} className="bg-white dark:bg-gray-700">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center space-x-3">
-                                                    <img className="w-10 h-10 rounded-full" src={product.images[0].path} alt={product.images[0].id} />
+                                                    {/* this replace backslash  is added due to the api response. */}
+                                                    <img className="w-10 h-10 rounded-full" src={product.images[0].path.replace(/\\\\/g, '\\')} alt="product-image" />
                                                     <div>
                                                         <p className="font-semibold">{product.name}</p>
                                                     </div>
