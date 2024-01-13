@@ -12,7 +12,8 @@ function AddProductComponent() {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [stock, setStock] = useState('');
-    
+    const [images, setImages] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -34,7 +35,25 @@ function AddProductComponent() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        const formData = new FormData();
+        formData.append('name', productName);
+        formData.append('regular_price', regularPrice);
+        formData.append('sale_price', salePrice);
+        formData.append('description', description);
+        formData.append('status', status);
+        formData.append('stock', stock);
+        formData.append('category_id', categoryId);
+        formData.append('subcategory_id', subCategoryId);
+        for (let i = 0; i < images.length; i++) {
+            formData.append('images[]', images[i]);
+        }
+        http.post(`/admin/products`, formData).then((res) => {
+            if (res.data.status === 'success') {
+                alert('Product Added Successfully');
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     }
     return (
         <>
@@ -61,6 +80,7 @@ function AddProductComponent() {
                                 ))
                             }
                         </select>
+                        <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="images" type="file" multiple onChange={(e) => setImages(e.target.files)}/>
                     </div>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Product</button>
                 </form>
