@@ -14,6 +14,7 @@ function Product() {
     const fetchData = () => {
         http.get(`/products?paginate=5&page=${page}`).then((res) => {
             const response = res.data.data;
+            console.log(response);
             setProducts(response);
             setMeta(res.data.meta);
         }).catch((err) => {
@@ -69,6 +70,7 @@ function Product() {
                                         <tr key={index} className="bg-white dark:bg-gray-700">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center space-x-3">
+                                                    <img className="w-10 h-10 rounded-full" src={product.images[0].path} alt={product.images[0].id} />
                                                     <div>
                                                         <p className="font-semibold">{product.name}</p>
                                                     </div>
@@ -89,7 +91,7 @@ function Product() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-sm">
-                                                <Link to={ '/admin/dashboard/product/edit/' + product.id } className="text-blue-500 hover:text-blue-700 px-1">Edit</Link>
+                                                <Link to={'/admin/dashboard/product/edit/' + product.id} className="text-blue-500 hover:text-blue-700 px-1">Edit</Link>
                                                 <button className="text-red-500 hover:text-red-700 px-1" onClick={handleDeleteProduct}>Delete</button>
                                             </td>
                                         </tr>
