@@ -48,7 +48,16 @@ function AddProductComponent() {
             formData.append('images[]', images[i]);
         }
         http.post(`/admin/products`, formData).then((res) => {
-            if (res.data.status === 'success') {
+            if (res.status === 201) {
+                setProductName('');
+                setRegularPrice('');
+                setSalePrice('');
+                setDescription('');
+                setStatus('');
+                setStock('');
+                setCategoryId('');
+                setSubCategoryId('');
+                setImages();
                 alert('Product Added Successfully');
             }
         }).catch((err) => {
