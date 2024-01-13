@@ -57,7 +57,7 @@ function AddProductComponent() {
                 setStock('');
                 setCategoryId('');
                 setSubCategoryId('');
-                setImages();
+                setImages([]);
                 alert('Product Added Successfully');
             }
         }).catch((err) => {
