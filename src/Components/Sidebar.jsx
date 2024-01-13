@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { FaBoxOpen } from "react-icons/fa";
 import { FaBoxesStacked } from "react-icons/fa6";
+import { FaBagShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+
 function Sidebar() {
     const [nav, setNav] = useState(false);
 
     const menuItems = [
         { icon: <FaBoxOpen size={25} className="mr-4" />, text: "Category", href: "/admin/dashboard/category" },
         { icon: <FaBoxesStacked size={25} className="mr-4" />, text: "SubCategory", href: "/admin/dashboard/sub-category" },
+        { icon: <FaBagShopping size={25} className="mr-4" />, text: "Product", href: "/admin/dashboard/product" },
     ];
     return (
         <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4 shadow-sm">
