@@ -61,7 +61,9 @@ function EditProductComponent() {
             formData.append('images[]', images[i]);
         }
         http.post(`/admin/products/${id}`, formData).then((res) => {
-            console.log(res);
+            if (res.status === 200) {
+                alert('Product Updated Successfully');
+            }
         }).catch((err) => {
             console.log(err);
         });
