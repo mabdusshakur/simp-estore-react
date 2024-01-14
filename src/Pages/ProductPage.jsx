@@ -69,6 +69,7 @@ function Product() {
                                         http.delete(`/admin/products/${productId}`).then((res) => {
                                             if (res.data.status === 'success') {
                                                 alert('Product Deleted Successfully');
+                                                fetchData();
                                             }
                                         }).catch((err) => {
                                             console.log(err);
