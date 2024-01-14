@@ -65,6 +65,7 @@ function SubCategory() {
                                         console.log(`Deleting Sub-category with ID: ${subcategoryId}`);
                                         http.delete(`/admin/sub-categories/${subcategoryId}`).then((res) => {
                                             console.log("SubCategory deleted successfully");
+                                            fetchData();
                                         }).catch((err) => {
                                             console.log("Error deleting Subcategory:", err.response.data.message);
                                         });
