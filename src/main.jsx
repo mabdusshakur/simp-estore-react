@@ -14,6 +14,7 @@ import Sidebar from './Components/SideBar.jsx';
 import EditCategoryComponent from './Components/EditCategoryComponent.jsx';
 import EditSubCategoryComponent from './Components/EditSubCategoryComponent.jsx';
 import Product from './Pages/ProductPage.jsx';
+import EditProductComponent from './Components/EditProductComponent.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -63,6 +64,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/admin/dashboard/product" element={<>
             <Sidebar />
             <Product />
+          </>} />
+          <Route path="/admin/dashboard/product/edit/:id" element={<>
+            <Sidebar />
+            <EditProductComponent />
           </>} />
         </Route>
       </Routes>
