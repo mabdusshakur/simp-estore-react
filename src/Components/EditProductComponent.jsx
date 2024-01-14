@@ -16,6 +16,8 @@ function EditProductComponent() {
     const [stock, setStock] = useState('');
     const [images, setImages] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -63,6 +65,7 @@ function EditProductComponent() {
         http.post(`/admin/products/${id}`, formData).then((res) => {
             if (res.status === 200) {
                 alert('Product Updated Successfully');
+                navigate(-1);
             }
         }).catch((err) => {
             console.log(err);
