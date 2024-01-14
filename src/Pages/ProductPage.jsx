@@ -67,7 +67,9 @@ function Product() {
                                     const handleDeleteProduct = (event) => {
                                         const productId = product.id;
                                         http.delete(`/admin/products/${productId}`).then((res) => {
-                                            console.log(res);
+                                            if (res.data.status === 'success') {
+                                                alert('Product Deleted Successfully');
+                                            }
                                         }).catch((err) => {
                                             console.log(err);
                                         });
