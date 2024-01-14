@@ -68,6 +68,7 @@ function Category() {
                                         console.log(`Deleting category with ID: ${categoryId}`);
                                         http.delete(`/admin/categories/${categoryId}`).then((res) => {
                                             console.log("Category deleted successfully");
+                                            fetchData();
                                         }).catch((err) => {
                                             console.log("Error deleting category:", err.response.data.message);
                                         });
