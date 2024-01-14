@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import http from '../axios';
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 function EditProductComponent() {
     const { id } = useParams();
@@ -45,6 +46,7 @@ function EditProductComponent() {
             setStock(response.stock);
             setCategoryId(response.category_id);
             setSubCategoryId(response.subcategory_id);
+            setImages(response.images);
         }).catch((err) => { console.log(err) });
     };
 
@@ -70,6 +72,10 @@ function EditProductComponent() {
         }).catch((err) => {
             console.log(err);
         });
+    }
+
+    const handleImageDelete = (e) => {
+        console.log(e.target);
     }
     return (
         <>
@@ -97,6 +103,20 @@ function EditProductComponent() {
                             }
                         </select>
                         <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="images" type="file" multiple onChange={(e) => setImages(e.target.files)} />
+                    </div>
+                    <div className="mb-6">
+                        <div className="grid grid-cols-4 gap-4">
+                            {
+                                images.map((image, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <IoCloseCircleOutline className='text-red-500' onClick={handleImageDelete}/>
+                                            <img className="h-auto max-w-40" src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="product image" />
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Product</button>
                 </form>
