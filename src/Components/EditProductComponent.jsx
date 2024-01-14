@@ -77,7 +77,13 @@ function EditProductComponent() {
     const handleImageDelete = (e, id) => {
         e.preventDefault();
         const image_db_id = id;
-        console.log(image_db_id);
+        http.post('admin/delete-product-image', { image_id: image_db_id }).then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+                alert('Image deleted successfully');
+                fetchData();
+            }
+        }).catch((err) => { console.log(err); });
     }
     return (
         <>
@@ -112,7 +118,7 @@ function EditProductComponent() {
                                 images.map((image, index) => {
                                     return (
                                         <div key={index}>
-                                            <IoCloseCircleOutline className='text-red-500' onClick={(e) => handleImageDelete(e, image.id)}/>
+                                            <IoCloseCircleOutline className='text-red-500' onClick={(e) => handleImageDelete(e, image.id)} />
                                             <img className="h-auto max-w-40" src="https://platinumlist.net/guide/wp-content/uploads/2023/03/IMG-worlds-of-adventure.webp" alt="product image" />
                                         </div>
                                     );
