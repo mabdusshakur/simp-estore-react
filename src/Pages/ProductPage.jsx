@@ -66,7 +66,11 @@ function Product() {
                                 products.map((product, index) => {
                                     const handleDeleteProduct = (event) => {
                                         const productId = product.id;
-                                        console.log(`Deleting Product with ID: ${productId}`);
+                                        http.delete(`/admin/products/${productId}`).then((res) => {
+                                            console.log(res);
+                                        }).catch((err) => {
+                                            console.log(err);
+                                        });
                                     };
                                     return (
                                         <tr key={index} className="bg-white dark:bg-gray-700">
