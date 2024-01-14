@@ -60,20 +60,8 @@ function EditProductComponent() {
         for (let i = 0; i < images.length; i++) {
             formData.append('images[]', images[i]);
         }
-        http.put(`/admin/products`, formData).then((res) => {
+        http.post(`/admin/products/${id}`, formData).then((res) => {
             console.log(res);
-            if (res.status === 201) {
-                setProductName('');
-                setRegularPrice('');
-                setSalePrice('');
-                setDescription('');
-                setStatus('');
-                setStock('');
-                setCategoryId('');
-                setSubCategoryId('');
-                setImages([]);
-                alert('Product Updated Successfully');
-            }
         }).catch((err) => {
             console.log(err);
         });
