@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import http from "../../axios";
 import ProductCard from "../ProductCard";
 
 function RecentProduct() {
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         fetchData();
     }, []);
@@ -11,6 +12,7 @@ function RecentProduct() {
         http.get(`/products?sort=created_at&order=desc`).then((res) => {
             const response = res.data.data;
             console.log(response);
+            setProducts(response);
         }).catch((err) => {
             console.log(err);
         });
@@ -19,7 +21,11 @@ function RecentProduct() {
     return (
         <>
             <div className="flex flex-wrap mt-5 justify-center">
-                <ProductCard name="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport" price="599" />
+                {
+                    products.map((product) => (
+                        <ProductCard key={product.id} name={product.name} price={product.regular_price} />
+                    ))
+                }
             </div>
         </>
     );
