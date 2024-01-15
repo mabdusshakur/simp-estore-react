@@ -1,9 +1,13 @@
+import http from "../axios";
+
 function ProductCard(props) {
     const { name, price } = props;
     const trimmedName = name.substring(0, 30);
 
     const handleAddToCart = () => {
-        alert('Added to cart');
+        http.post('/carts', { product_id: props.id, quantity: 1 }).then((res) => {
+            console.log(res);
+        }).catch((err) => { console.log(err); });
     };
     return (
         <>
