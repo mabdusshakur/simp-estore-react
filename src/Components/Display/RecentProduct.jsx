@@ -26,6 +26,7 @@ function RecentProduct() {
                 {products.map((product) => (
                     <ProductCard
                         key={product.id}
+                        id={product.id}
                         name={product.name}
                         price={product.sale_price != 0 ? product.sale_price : product.regular_price}
                     />
