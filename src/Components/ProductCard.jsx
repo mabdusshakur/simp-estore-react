@@ -6,6 +6,7 @@ function ProductCard(props) {
 
     const handleAddToCart = () => {
         http.post('/carts', { product_id: id, quantity: 1 }).then((res) => {
+            console.log(res);
             if (res.status === 200) {
                 alert('Product Added to Cart Successfully');
             }
