@@ -5,8 +5,10 @@ function ProductCard(props) {
     const trimmedName = name.substring(0, 30);
 
     const handleAddToCart = () => {
-        http.post('/carts', { product_id: props.id, quantity: 1 }).then((res) => {
-            console.log(res);
+        http.post('/carts', { product_id: id, quantity: 1 }).then((res) => {
+            if (res.status === 200) {
+                alert('Product Added to Cart Successfully');
+            }
         }).catch((err) => { console.log(err); });
     };
     return (
