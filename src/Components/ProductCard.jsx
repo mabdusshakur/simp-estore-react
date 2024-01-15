@@ -1,7 +1,7 @@
 import http from "../axios";
 
 function ProductCard(props) {
-    const { name, price } = props;
+    const { id, name, price } = props;
     const trimmedName = name.substring(0, 30);
 
     const handleAddToCart = () => {
