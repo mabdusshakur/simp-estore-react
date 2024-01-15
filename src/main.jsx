@@ -15,6 +15,7 @@ import EditCategoryComponent from './Components/EditCategoryComponent.jsx';
 import EditSubCategoryComponent from './Components/EditSubCategoryComponent.jsx';
 import Product from './Pages/ProductPage.jsx';
 import EditProductComponent from './Components/EditProductComponent.jsx';
+import Home from './Pages/HomePage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -32,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<div>Home</div>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<PreventIfAuthenticated />} >
           <Route index element={<Login />} />
         </Route>
