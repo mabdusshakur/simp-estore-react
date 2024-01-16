@@ -6,9 +6,9 @@ function ProductCard(props) {
     const { id, name, price, images } = props;
     const trimmedName = name.substring(0, 30);
 
-    useEffect(() => {
-        checkProductAlreadyInWishlist();
-    }, []);
+    // useEffect(() => {
+    //     checkProductAlreadyInWishlist();
+    // }, []);
     const handleAddToCart = () => {
         http.post('/carts', { product_id: id, quantity: 1 }).then((res) => {
             console.log(res);
