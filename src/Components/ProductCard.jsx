@@ -16,6 +16,9 @@ function ProductCard(props) {
     const handleWishlist = () => {
         http.post('/wishlists', { product_id: id }).then((res) => {
             console.log(res);
+            if (res.status === 200) {
+                alert('Product Added to Wishlist Successfully');
+            }
         }).catch((err) => { console.log(err); });
     };
     return (
