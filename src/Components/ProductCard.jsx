@@ -26,8 +26,8 @@ function ProductCard(props) {
         }).catch((err) => { console.log(err); });
     };
 
-    const checkProductAlreadyInWishlist = () => {
-        http.post(`/wishlist-exists/${id}`).then((res) => {
+    const checkProductAlreadyInWishlist = async () => {
+        await http.post(`/wishlist-exists/${id}`).then((res) => {
             if(res.data === true) {
                 console.log('Product already in wishlist id = ', id);
                 document.getElementById('wishlist').classList.remove('text-white');
@@ -35,6 +35,7 @@ function ProductCard(props) {
             }
         }).catch((err) => { console.log(err); });
     };
+    
     return (
         <>
             <div className="max-w-60 mx-1 my-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-500">
