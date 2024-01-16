@@ -2,7 +2,7 @@ import http from "../axios";
 import { FaHeart } from "react-icons/fa";
 
 function ProductCard(props) {
-    const { id, name, price } = props;
+    const { id, name, price, images } = props;
     const trimmedName = name.substring(0, 30);
 
     const handleAddToCart = () => {
@@ -25,7 +25,7 @@ function ProductCard(props) {
         <>
             <div className="max-w-60 mx-1 my-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-500">
                 <a href="#">
-                    <img className="p-1 rounded-t-lg" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D" alt="product image" />
+                    <img className="p-1 rounded-t-lg" src={images[0].path.replace(/\\\\/, '\\')} alt="product image" />
                 </a>
                 <div className="px-5 pb-5">
                     <a href="#">
