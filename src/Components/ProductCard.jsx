@@ -26,15 +26,15 @@ function ProductCard(props) {
         }).catch((err) => { console.log(err); });
     };
 
-    const checkProductAlreadyInWishlist = async () => {
-        await http.post(`/wishlist-exists/${id}`).then((res) => {
-            if(res.data === true) {
-                console.log('Product already in wishlist id = ', id);
-                document.getElementById('wishlist').classList.remove('text-white');
-                document.getElementById('wishlist').classList.add('text-red-500');
-            }
-        }).catch((err) => { console.log(err); });
-    };
+    // const checkProductAlreadyInWishlist = async () => {
+    //     await http.post(`/wishlist-exists/${id}`).then((res) => {
+    //         if(res.data === true) {
+    //             console.log('Product already in wishlist id = ', id);
+    //             document.getElementById('wishlist').classList.remove('text-white');
+    //             document.getElementById('wishlist').classList.add('text-red-500');
+    //         }
+    //     }).catch((err) => { console.log(err); });
+    // };
     
     return (
         <>
@@ -49,7 +49,7 @@ function ProductCard(props) {
                     <div className="flex items-center justify-between">
                         <span className="text-xl font-bold text-gray-900 dark:text-white">${price}</span>
                         <button onClick={handleAddToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
-                        <FaHeart className="text-xl text-white cursor-pointer" id="wishlist" onClick={handleWishlist}/>
+                        {/* <FaHeart className="text-xl text-white cursor-pointer" id="wishlist"/> */}
                     </div>
 
                 </div>
