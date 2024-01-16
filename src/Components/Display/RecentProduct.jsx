@@ -28,7 +28,7 @@ function RecentProduct() {
                         key={product.id}
                         id={product.id}
                         name={product.name}
-                        image={product.image}
+                        images={product.images}
                         price={product.sale_price != 0 ? product.sale_price : product.regular_price}
                     />
                 ))}
