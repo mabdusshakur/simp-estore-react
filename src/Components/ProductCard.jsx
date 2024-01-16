@@ -13,6 +13,11 @@ function ProductCard(props) {
             }
         }).catch((err) => { console.log(err); });
     };
+    const handleWishlist = () => {
+        http.post('/wishlists', { product_id: id }).then((res) => {
+            console.log(res);
+        }).catch((err) => { console.log(err); });
+    };
     return (
         <>
             <div className="max-w-60 mx-1 my-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-500">
@@ -26,7 +31,7 @@ function ProductCard(props) {
                     <div className="flex items-center justify-between">
                         <span className="text-xl font-bold text-gray-900 dark:text-white">${price}</span>
                         <button onClick={handleAddToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
-                        <FaHeart className="text-xl text-red-500 cursor-pointer"/>
+                        <FaHeart className="text-xl text-red-500 cursor-pointer" onClick={handleWishlist}/>
                     </div>
 
                 </div>
