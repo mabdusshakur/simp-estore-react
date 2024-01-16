@@ -119,7 +119,7 @@ function EditProductComponent() {
                                     return (
                                         <div key={index}>
                                             <IoCloseCircleOutline className='text-red-500' onClick={(e) => handleImageDelete(e, image.id)} />
-                                            <img className="h-auto max-w-40" src={image.path.replace(/\\\\/g, '\\')} alt="product image" />
+                                            <img className="h-auto max-w-40" src={image.path.replace(/\\\\/, '\\')} alt="product image" />
                                         </div>
                                     );
                                 })
