@@ -16,6 +16,8 @@ import EditSubCategoryComponent from './Components/EditSubCategoryComponent.jsx'
 import Product from './Pages/ProductPage.jsx';
 import EditProductComponent from './Components/EditProductComponent.jsx';
 import Home from './Pages/HomePage.jsx';
+import Cart from './Pages/CartPage.jsx';
+import Wishlist from './Pages/WishlistPage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -71,6 +73,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <EditProductComponent />
           </>} />
         </Route>
+
+        <Route path="/cart" element={<ProtectedRoute />} >
+          <Route index element={<Cart/>} />
+        </Route>
+        <Route path="/wishlist" element={<ProtectedRoute />} >
+          <Route index element={<Wishlist/>} />
+        </Route>
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
