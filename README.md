@@ -18,28 +18,28 @@ This is a simple React eCommerce project that serves as the frontend implementat
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/mabdusshakur/simp-estore-react.git
-    ```
+   ```bash
+   git clone https://github.com/mabdusshakur/simp-estore-react.git
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    cd simp-estore-react
-    npm install
-    ```
+   ```bash
+   cd simp-estore-react
+   npm install
+   ```
 
 3. Configure API endpoint:
 
-    Update the api endpoint in axios.js to point to your API server.
+   ```
+   Update the api endpoint in axios.js to point to your API server.
+   ```
 
 4. Start the development server:
 
-    ```bash
-    npm run dev
-    ```
-
-5. Open your browser and navigate to `http://localhost:3000` to access the application.
+   ```bash
+   npm run dev
+   ```
 
 ## Contributing
 
