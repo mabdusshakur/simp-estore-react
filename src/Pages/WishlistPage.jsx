@@ -36,7 +36,14 @@ function Wishlist() {
                             {
                                 wishlist.map((wishlist, index) => {
                                     const handleDeleteWishlist = (event) => {
-
+                                        console.log(wishlist.id);
+                                        const wishlistId = wishlist.id;
+                                        http.delete(`/wishlists/${wishlistId}`).then((res) => {
+                                            if (res.status === 200) {
+                                                alert('Wishlist deleted successfully');
+                                                fetchData();
+                                            }
+                                        }).catch((err) => { console.log(err); });
                                     };
                                     return (
                                         <tr key={index} className="bg-white dark:bg-gray-700">
