@@ -17,6 +17,16 @@ function Wishlist() {
         });
     };
 
+    const handleDeleteAllWishlist = (event) => {
+        http.post(`/wishlists/destroy-all`).then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+                alert('All Wishlist deleted successfully');
+                fetchData();
+            }
+        }).catch((err) => { console.log(err); });
+    };
+
     return (
         <>
             <div className="container mx-auto px-4 mt-5">
@@ -65,6 +75,9 @@ function Wishlist() {
                             }
                         </tbody>
                     </table>
+                    <div className="px-6 py-4 text-sm">
+                        <button className="text-red-500 hover:text-red-700 px-1" onClick={handleDeleteAllWishlist}>Delete All</button>
+                    </div>
                 </div>
             </div>
         </>
