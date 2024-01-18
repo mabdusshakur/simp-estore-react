@@ -11,7 +11,7 @@ function Checkout() {
     let stripe;
     let elements;
     let paymentElement;
-    let clientSecretGlobal;
+    let clientSecretGlobal = '';
 
     const order_button = document.getElementById("order_button");
     const payment_ui = document.getElementById("payment_ui");
@@ -40,17 +40,20 @@ function Checkout() {
         });
     };
 
-    const handleStripePayment = async() => {
+    const handleStripePayment = async () => {
         stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
-        console.log('client-Secret',clientSecret);
         elements = stripe.elements({
-            clientSecret: clientSecret,
+            clientSecret: clientSecretGlobal,
         });
         paymentElement = elements.create('payment', {
             layout: "tabs",
             loader: "auto",
         });
         paymentElement.mount(payment_ui);
+    };
+
+    const confirmStripePayment = async () => {
+        console.log('confirmStripePayment');
     };
 
     const handlePlaceOrder = () => {
@@ -63,15 +66,20 @@ function Checkout() {
             payment_method: "stripe_intent",
         };
 
-        http.post('/orders', data).then((res) => {
-            const response = res.data;
-            if (response.status === 'success') {
-                const secret = response.client_secret;
-                clientSecretGlobal = secret;
-                setClientSecret(secret);
-                handleStripePayment();
-            }
-        }).catch((err) => { console.log(err); });
+        if (clientSecretGlobal === '') {
+            http.post('/orders', data).then((res) => {
+                const response = res.data;
+                if (response.status === 'success') {
+                    const secret = response.client_secret;
+                    clientSecretGlobal = secret;
+                    setClientSecret(secret);
+                    handleStripePayment();
+                }
+            }).catch((err) => { console.log(err); });
+        }
+        else if(clientSecretGlobal !== ''){
+            confirmStripePayment();
+        }
     };
 
     return (
