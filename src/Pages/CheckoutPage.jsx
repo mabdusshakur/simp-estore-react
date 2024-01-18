@@ -11,10 +11,11 @@ function Checkout() {
     let stripe;
     let elements;
     let paymentElement;
+    let clientSecretGlobal;
 
     const order_button = document.getElementById("order_button");
     const payment_ui = document.getElementById("payment_ui");
-    
+
     const paymentMethods = [
         { value: 'stripe_intent', label: 'Stripe Intend' },
         { value: 'cod', label: 'Cash on Delivery' },
@@ -39,9 +40,9 @@ function Checkout() {
         });
     };
 
-    const handleStripePayment = async () => {
-        console.log(clientSecret);
+    const handleStripePayment = async() => {
         stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
+        console.log('client-Secret',clientSecret);
         elements = stripe.elements({
             clientSecret: clientSecret,
         });
@@ -65,8 +66,9 @@ function Checkout() {
         http.post('/orders', data).then((res) => {
             const response = res.data;
             if (response.status === 'success') {
-                console.log(response.client_secret);
-                setClientSecret(response.client_secret);
+                const secret = response.client_secret;
+                clientSecretGlobal = secret;
+                setClientSecret(secret);
                 handleStripePayment();
             }
         }).catch((err) => { console.log(err); });
