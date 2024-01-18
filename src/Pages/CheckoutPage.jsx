@@ -44,7 +44,7 @@ function Checkout() {
         console.log(stripe)
 
         elements = stripe.elements({
-            clientSecret: 'pi_3OZc0XBlMv1Fu93l0obvAsQh',
+            clientSecret: clientSecret,
         });
 
         console.log(elements)
