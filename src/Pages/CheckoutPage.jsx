@@ -7,7 +7,6 @@ function Checkout() {
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [clientSecret, setClientSecret] = useState('');
     const [stripe, setStripe] = useState([]);
     const [elements, setElements] = useState([]);
 
@@ -33,7 +32,6 @@ function Checkout() {
                 const price = cart.product.sale_price !== 0 ? cart.product.sale_price : cart.product.regular_price;
                 return total + price * cart.quantity;
             }, 0);
-            console.log(response);
             setCart(response);
             setTotalPrice(totalPrice);
         }).catch((err) => {
@@ -55,12 +53,9 @@ function Checkout() {
 
         order_button.hidden = true;
         stripe_pay_now_button.hidden = false;
-        console.log(stripe);
-        console.log(elements);
     };
 
     const confirmStripePayment = async (stripe, elements) => {
-        console.log('confirmStripePayment');
         const paymentResult = await stripe.confirmPayment({
             elements,
             redirect: "if_required",
@@ -73,8 +68,6 @@ function Checkout() {
             console.info("Error confirming payment:", paymentResult.error.message);
         }
         const { status, id } = paymentResult.paymentIntent;
-        console.log(status, id);
-
         if (status === 'succeeded') {
             const data = {
                 payment_intent_client_id: id,
@@ -108,7 +101,6 @@ function Checkout() {
             if (response.status === 'success') {
                 const secret = response.client_secret;
                 clientSecretGlobal = secret;
-                setClientSecret(secret);
                 handleStripePayment();
             }
         }).catch((err) => { console.log(err); });
