@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import http from "../axios";
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from '@stripe/stripe-js/pure';
+loadStripe.setLoadParameters({ advancedFraudSignals: false });
 
 function Checkout() {
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState('');
     const [clientSecret, setClientSecret] = useState('');
+    const [stripe, setStripe] = useState([]);
+    const [elements, setElements] = useState([]);
 
-    let stripe;
-    let elements;
-    let paymentElement;
     let clientSecretGlobal = '';
 
     const order_button = document.getElementById("order_button");
+    const stripe_pay_now_button = document.getElementById("stripe_pay_now_button");
     const payment_ui = document.getElementById("payment_ui");
 
     const paymentMethods = [
@@ -41,25 +42,55 @@ function Checkout() {
     };
 
     const handleStripePayment = async () => {
-        stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
-        elements = stripe.elements({
+        const stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
+        setStripe(stripe);
+
+        const elements = stripe.elements({
             clientSecret: clientSecretGlobal,
         });
-        paymentElement = elements.create('payment', {
-            layout: "tabs",
-            loader: "auto",
-        });
+        setElements(elements);
+
+        const paymentElement = elements.create('payment');
         paymentElement.mount(payment_ui);
 
-        order_button.disabled = false;
-        order_button.innerText = 'Pay Now';
+        order_button.hidden = true;
+        stripe_pay_now_button.hidden = false;
+        console.log(stripe);
+        console.log(elements);
     };
 
-    const confirmStripePayment = async () => {
+    const confirmStripePayment = async (stripe, elements) => {
         console.log('confirmStripePayment');
+        const paymentResult = await stripe.confirmPayment({
+            elements,
+            redirect: "if_required",
+            confirmParams: {
+                return_url: `${window.location.origin}/payment-confirmation`,
+            },
+        });
+
+        if (paymentResult.error) {
+            console.info("Error confirming payment:", paymentResult.error.message);
+        }
+        const { status, id } = paymentResult.paymentIntent;
+        console.log(status, id);
+
+        if (status === 'succeeded') {
+            const data = {
+                payment_intent_client_id: id,
+            };
+            http.post(`orders/confirm-stripe-intent-payment`, data).then((res) => {
+                const response = res.data;
+                console.info(response);
+                if (response.succeeded === true) {
+                    alert('Payment success');
+                    fetchData();
+                }
+            }).catch((err) => { console.log(err); });
+        }
     };
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = (e) => {
         if (paymentMethod === '') {
             alert('Please select payment method');
             return;
@@ -72,20 +103,15 @@ function Checkout() {
         order_button.disabled = true;
         order_button.innerText = 'Please wait...';
 
-        if (clientSecretGlobal === '') {
-            http.post('/orders', data).then((res) => {
-                const response = res.data;
-                if (response.status === 'success') {
-                    const secret = response.client_secret;
-                    clientSecretGlobal = secret;
-                    setClientSecret(secret);
-                    handleStripePayment();
-                }
-            }).catch((err) => { console.log(err); });
-        }
-        else if(clientSecretGlobal !== ''){
-            confirmStripePayment();
-        }
+        http.post('/orders', data).then((res) => {
+            const response = res.data;
+            if (response.status === 'success') {
+                const secret = response.client_secret;
+                clientSecretGlobal = secret;
+                setClientSecret(secret);
+                handleStripePayment();
+            }
+        }).catch((err) => { console.log(err); });
     };
 
     return (
@@ -138,6 +164,7 @@ function Checkout() {
                         </div>
                     </div>
                     <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={handlePlaceOrder} id="order_button">Place Order</button>
+                    <button className="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" onClick={() => confirmStripePayment(stripe, elements)} id="stripe_pay_now_button" hidden>Pay Now</button>
                 </div>
             </div>
         </>
