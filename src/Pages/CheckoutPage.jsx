@@ -50,6 +50,9 @@ function Checkout() {
             loader: "auto",
         });
         paymentElement.mount(payment_ui);
+
+        order_button.disabled = false;
+        order_button.innerText = 'Pay Now';
     };
 
     const confirmStripePayment = async () => {
@@ -65,6 +68,9 @@ function Checkout() {
             status: "pending",
             payment_method: "stripe_intent",
         };
+
+        order_button.disabled = true;
+        order_button.innerText = 'Please wait...';
 
         if (clientSecretGlobal === '') {
             http.post('/orders', data).then((res) => {
