@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@stripe/stripe-js": "^2.3.0",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.5",
     "localforage": "^1.10.0",
