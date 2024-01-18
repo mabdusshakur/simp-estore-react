@@ -13,6 +13,8 @@ function Checkout() {
     let paymentElement;
 
     const order_button = document.getElementById("order_button");
+    const payment_ui = document.getElementById("payment_ui");
+    
     const paymentMethods = [
         { value: 'stripe_intent', label: 'Stripe Intend' },
         { value: 'cod', label: 'Cash on Delivery' },
@@ -39,20 +41,14 @@ function Checkout() {
 
     const handleStripePayment = async () => {
         console.log(clientSecret);
-        const payment_ui = document.getElementById("payment_ui");
         stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
-        console.log(stripe)
-
         elements = stripe.elements({
             clientSecret: clientSecret,
         });
-
-        console.log(elements)
         paymentElement = elements.create('payment', {
             layout: "tabs",
             loader: "auto",
         });
-        console.log(paymentElement)
         paymentElement.mount(payment_ui);
     };
 
