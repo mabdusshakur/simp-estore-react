@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import http from "../axios";
-
+import { loadStripe } from "@stripe/stripe-js";
 
 function Checkout() {
     const [cart, setCart] = useState([]);
@@ -37,6 +37,25 @@ function Checkout() {
         });
     };
 
+    const handleStripePayment = async () => {
+        console.log(clientSecret);
+        const payment_ui = document.getElementById("payment_ui");
+        stripe = await loadStripe('pk_test_51LWDmKBlMv1Fu93l9f0SuOpTcsUzWTKwIvxLcHgdplCPk8PTmiiPLsUGOHHh6VbM5wXI1WZhUx73ocSP7DGn26eQ00giqXPUeG');
+        console.log(stripe)
+
+        elements = stripe.elements({
+            clientSecret: 'pi_3OZc0XBlMv1Fu93l0obvAsQh',
+        });
+
+        console.log(elements)
+        paymentElement = elements.create('payment', {
+            layout: "tabs",
+            loader: "auto",
+        });
+        console.log(paymentElement)
+        paymentElement.mount(payment_ui);
+    };
+
     const handlePlaceOrder = () => {
         if (paymentMethod === '') {
             alert('Please select payment method');
@@ -52,10 +71,9 @@ function Checkout() {
             if (response.status === 'success') {
                 console.log(response.client_secret);
                 setClientSecret(response.client_secret);
-
+                handleStripePayment();
             }
         }).catch((err) => { console.log(err); });
-
     };
 
     return (
