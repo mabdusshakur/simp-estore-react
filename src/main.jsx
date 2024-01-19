@@ -20,6 +20,7 @@ import Cart from './Pages/CartPage.jsx';
 import Wishlist from './Pages/WishlistPage.jsx';
 import Checkout from './Pages/CheckoutPage.jsx';
 import Order from './Pages/OrderPage.jsx';
+import OrderDetails from './Pages/OrderDetailsPage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -77,6 +78,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/admin/dashboard/order" element={<>
             <Sidebar />
             <Order />
+          </>} />
+          <Route path="/admin/dashboard/order/detail/:id" element={<>
+            <Sidebar />
+            <OrderDetails />
           </>} />
         </Route>
 
