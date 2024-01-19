@@ -43,7 +43,45 @@ function Order() {
                             </tr>
                         </thead>
                         <tbody>
-
+                            {
+                                orders.map((order, index) => {
+                                    return (
+                                        <tr key={index} className="bg-white dark:bg-gray-700">
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center space-x-3">
+                                                    <div>
+                                                        <p className="font-semibold">{order.id}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center space-x-3">
+                                                    <div>
+                                                        <p className="font-semibold">{order.status}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center space-x-3">
+                                                    <div>
+                                                        <p className="font-semibold">{order.user.name}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center space-x-3">
+                                                    <div>
+                                                        <p className="font-semibold">{order.user.email}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-sm">
+                                                <Link to={'' + order.id} className="text-blue-500 hover:text-blue-700 px-1">Edit</Link>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
                         </tbody>
                     </table>
                 </div>
