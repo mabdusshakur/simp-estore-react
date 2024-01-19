@@ -76,7 +76,7 @@ function Order() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 text-sm">
-                                                <Link to={'' + order.id} className="text-blue-500 hover:text-blue-700 px-1">Edit</Link>
+                                                <Link to={'/admin/dashboard/order/detail/' + order.id} className="text-blue-500 hover:text-blue-700 px-1">View Details</Link>
                                             </td>
                                         </tr>
                                     );
