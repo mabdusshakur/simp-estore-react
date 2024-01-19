@@ -4,6 +4,7 @@ import { FaBoxOpen } from "react-icons/fa";
 import { FaBoxesStacked } from "react-icons/fa6";
 import { FaBagShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { BsCartCheck } from "react-icons/bs";
 
 function Sidebar() {
     const [nav, setNav] = useState(false);
@@ -12,6 +13,7 @@ function Sidebar() {
         { icon: <FaBoxOpen size={25} className="mr-4" />, text: "Category", href: "/admin/dashboard/category" },
         { icon: <FaBoxesStacked size={25} className="mr-4" />, text: "SubCategory", href: "/admin/dashboard/sub-category" },
         { icon: <FaBagShopping size={25} className="mr-4" />, text: "Product", href: "/admin/dashboard/product" },
+        { icon: <BsCartCheck size={25} className="mr-4" />, text: "Order", href: "/admin/dashboard/order" },
     ];
     return (
         <div className="max-w-[1640px] mx-auto flex justify-between items-center p-4 shadow-sm">
