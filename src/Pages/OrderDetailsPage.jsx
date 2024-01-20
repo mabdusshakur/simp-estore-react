@@ -1,7 +1,21 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import http from "../axios";
 
 function OrderDetails() {
     const { id } = useParams();
+    useEffect(() => {
+        fetchData();
+    }, [id]);
+
+    const fetchData = () => {
+        http.get(`/admin/orders/${id}`).then((res) => {
+            const response = res.data;
+            console.log(response);
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
     return (
         <>
             <div className="container mx-auto px-4">
