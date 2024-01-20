@@ -1,17 +1,27 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import http from "../axios";
 
 function OrderDetails() {
     const { id } = useParams();
+    const [userName , setUserName] = useState("");
+    const [userEmail , setUserEmail] = useState("");
+    const [userPhone , setUserPhone] = useState("");
+    const [userAddress1 , setUserAddress1] = useState("");
+    const [userAddress2 , setUserAddress2] = useState("");
+    const [userCity , setUserCity] = useState("");
+    const [userCountry , setUserCountry] = useState("");
+    const [userPostalCode , setUserPostalCode] = useState("");
+
     useEffect(() => {
         fetchData();
     }, [id]);
 
     const fetchData = () => {
         http.get(`/admin/orders/${id}`).then((res) => {
-            const response = res.data;
+            const response = res.data.data;
             console.log(response);
+            
         }).catch((err) => {
             console.log(err);
         });
