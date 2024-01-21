@@ -4,9 +4,9 @@ import http from "../axios";
 
 function OrderDetails() {
     const { id } = useParams();
-    const [order, setOrder] = useState({});
+    const [orderer, setOrderer] = useState({});
     const [orderItems, setOrderItems] = useState([]);
-    const { name, email, phone_number, address_1, address_2, city, country, postal_code } = order;
+    const { name, email, phone_number, address_1, address_2, city, country, postal_code } = orderer;
 
     useEffect(() => {
         fetchData();
@@ -15,7 +15,7 @@ function OrderDetails() {
     const fetchData = () => {
         http.get(`/admin/orders/${id}`).then((res) => {
             const response = res.data.data;
-            setOrder(response.user);
+            setOrderer(response.user);
             setOrderItems(response.order_items);
             console.log(response.order_items);
         }).catch((err) => {
