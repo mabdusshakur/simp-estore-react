@@ -23,6 +23,17 @@ function OrderDetails() {
         });
     };
 
+    const deliverOrder = () => {
+        http.put(`/admin/orders/${id}`, { status: 'delivered' }, { headers: { 'Content-Type': 'application/json' } }).then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+                alert('Order Delivered Successfully');
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    };
+    
     return (
         <>
             <div className="container mx-auto px-4">
@@ -59,6 +70,7 @@ function OrderDetails() {
                         </tbody>
                     </table>
                 </div>
+                <button className="text-green-500 hover:text-green-700 p-2" onClick={deliverOrder}>Deliver Order</button>
             </div>
         </>
     );
