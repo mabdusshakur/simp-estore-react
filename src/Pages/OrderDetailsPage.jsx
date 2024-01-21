@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import http from "../axios";
 
 function OrderDetails() {
     const { id } = useParams();
     const [order, setOrder] = useState({});
-    const { name, email, phone_number, address_1, address_2, city, country, postal_code } = order.user;
+    const { name, email, phone_number, address_1, address_2, city, country, postal_code } = order;
 
     useEffect(() => {
         fetchData();
@@ -14,7 +14,8 @@ function OrderDetails() {
     const fetchData = () => {
         http.get(`/admin/orders/${id}`).then((res) => {
             const response = res.data.data;
-            setOrder(response);
+            console.log();
+            setOrder(response.user);
         }).catch((err) => {
             console.log(err);
         });
