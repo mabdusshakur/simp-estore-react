@@ -20,7 +20,7 @@ function OrderDetails() {
             console.log(err);
         });
     };
-    
+
     return (
         <>
             <div className="container mx-auto px-4">
@@ -33,6 +33,23 @@ function OrderDetails() {
                     <p className="text-sm underline m-2">Orderer City : {city}</p>
                     <p className="text-sm underline m-2">Orderer Country : {country}</p>
                     <p className="text-sm underline m-2">Orderer Postal-Code : {postal_code}</p>
+                </div>
+            </div>
+            <div className="container mx-auto px-4 mt-1">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <p className="text-xl m-2">Order Items : </p>
+                    <table className="table-auto w-full">
+                        <thead>
+                            <tr>
+                                <th className="px-4 py-2">Product Name</th>
+                                <th className="px-4 py-2">Product Price</th>
+                                <th className="px-4 py-2">Product Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </>
