@@ -5,7 +5,7 @@ import http from "../axios";
 function OrderDetails() {
     const { id } = useParams();
     const [order, setOrder] = useState({});
-    const [orderItems, setOrderItems] = useState([]); 
+    const [orderItems, setOrderItems] = useState([]);
     const { name, email, phone_number, address_1, address_2, city, country, postal_code } = order;
 
     useEffect(() => {
@@ -15,9 +15,9 @@ function OrderDetails() {
     const fetchData = () => {
         http.get(`/admin/orders/${id}`).then((res) => {
             const response = res.data.data;
-            console.log(response);
             setOrder(response.user);
             setOrderItems(response.order_items);
+            console.log(response.order_items);
         }).catch((err) => {
             console.log(err);
         });
@@ -49,7 +49,13 @@ function OrderDetails() {
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            {orderItems.map((orderItem) => (
+                                <tr key={orderItem.id}>
+                                    <td className="border px-4 py-2">{orderItem.product.name}</td>
+                                    <td className="border px-4 py-2">{orderItem.price}</td>
+                                    <td className="border px-4 py-2">{orderItem.quantity}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
