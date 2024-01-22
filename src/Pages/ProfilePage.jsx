@@ -12,6 +12,7 @@ export default function Profile() {
         country: "",
         postal_code: ""
     });
+    const [avatar, setAvatar] = useState();
 
     const { name, email, phone_number, address_1, address_2, city, country, postal_code } = user;
 
@@ -37,9 +38,28 @@ export default function Profile() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
+        try {
+            const formData = new FormData();
+            formData.append("avatar", avatar);
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("phone_number", phone_number);
+            formData.append("address_1", address_1);
+            formData.append("address_2", address_2);
+            formData.append("city", city);
+            formData.append("country", country);
+            formData.append("postal_code", postal_code);
+
+            const res = await http.post('/profile', formData);
+            console.info(res);
+            if (res.status === 200) {
+                alert('Profile Updated Successfully');
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -115,6 +135,9 @@ export default function Profile() {
                         <div className="mt-2">
                             <input id="phone_number" name="phone_number" type="tel" required className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value={phone_number} onChange={handleChange} />
                         </div>
+                    </div>
+                    <div>
+                        <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="images" type="file" onChange={(e) => setAvatar(e.target.files)} />
                     </div>
                     <div>
                         <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
