@@ -21,6 +21,7 @@ import Wishlist from './Pages/WishlistPage.jsx';
 import Checkout from './Pages/CheckoutPage.jsx';
 import Order from './Pages/OrderPage.jsx';
 import OrderDetails from './Pages/OrderDetailsPage.jsx';
+import Profile from './Pages/ProfilePage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -83,6 +84,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Sidebar />
             <OrderDetails />
           </>} />
+        </Route>
+
+        <Route path="/profile" element={<ProtectedRoute />} >
+          <Route index element={<Profile />} />
         </Route>
 
         <Route path="/cart" element={<ProtectedRoute />} >
