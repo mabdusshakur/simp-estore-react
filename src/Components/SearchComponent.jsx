@@ -1,10 +1,14 @@
 import { useState } from "react";
+import http from "../axios";
 
 function SearchComponent() {
     const [search, setSearch] = useState("");
     
-    const handleSearch = (e) => {
+    const handleSearch = async(e) => {
         setSearch(e.target.value);
+        const res = await http.get(`/products?search=${search}`);
+        const response = res.data.data;
+        console.log(response);
     };
     return (
         <>
