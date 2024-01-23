@@ -47,8 +47,8 @@ function ProductCard(props) {
                         <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{trimmedName}</h5>
                     </a>
                     <div className="flex items-center justify-between">
-                        <span className="text-xl font-bold text-gray-900 dark:text-white">${price}</span>
-                        <button onClick={handleAddToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                        <span className="text-sm p-1 font-bold text-gray-900 dark:text-white">${price}</span>
+                        <button onClick={handleAddToCart} className="m-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
                          <FaHeart className="text-xl text-red-500 cursor-pointer" id="wishlist" onClick={handleWishlist}/>
                     </div>
 
