@@ -12,7 +12,7 @@ export default function Profile() {
         country: "",
         postal_code: ""
     });
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState([]);
 
     const { name, email, phone_number, address_1, address_2, city, country, postal_code } = user;
 
@@ -42,7 +42,6 @@ export default function Profile() {
         e.preventDefault();
         try {
             const formData = new FormData();
-            formData.append("avatar", avatar);
             formData.append("name", name);
             formData.append("email", email);
             formData.append("phone_number", phone_number);
@@ -51,7 +50,8 @@ export default function Profile() {
             formData.append("city", city);
             formData.append("country", country);
             formData.append("postal_code", postal_code);
-
+            formData.append("avatar", avatar);
+            
             const res = await http.post('/profile', formData);
             console.info(res);
             if (res.status === 200) {
@@ -137,7 +137,7 @@ export default function Profile() {
                         </div>
                     </div>
                     <div>
-                        <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="images" type="file" onChange={(e) => setAvatar(e.target.files)} />
+                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="avatar" type="file" onChange={(e) => setAvatar(e.target.files[0])} />
                     </div>
                     <div>
                         <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
