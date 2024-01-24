@@ -1,9 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 import { isAdmin, isLoggedIn } from "../authManager";
 import SearchComponent from "./SearchComponent";
+import http from "../axios";
 const navigation = [
     { name: 'Home', href: '/', current: false, visible: true },
     { name: 'Cart', href: '/cart', current: false, visible: true },
@@ -20,6 +21,16 @@ function classNames(...classes) {
 
 export default function Navbar() {
     const current = useLocation().pathname;
+    const [avatar, setAvatar] = useState('');
+
+    useEffect(() => {
+        http.get('/profile').then((res) => {
+            const response = res.data.data;
+            setAvatar(response.avatar);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, []);
 
     navigation.forEach((pathname) => {
         if (pathname.href === current) {
@@ -89,8 +100,8 @@ export default function Navbar() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
+                                                src={avatar.replace(/\\\\/, '\\')}
+                                                alt="avatar"
                                             />
                                         </Menu.Button>
                                     </div>
