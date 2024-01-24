@@ -22,6 +22,7 @@ import Checkout from './Pages/CheckoutPage.jsx';
 import Order from './Pages/OrderPage.jsx';
 import OrderDetails from './Pages/OrderDetailsPage.jsx';
 import Profile from './Pages/ProfilePage.jsx';
+import ProductDetails from './Pages/ProductDetailsPage.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -40,6 +41,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/product-details/:id" element={<ProductDetails />} />
+        
         <Route path="/login" element={<PreventIfAuthenticated />} >
           <Route index element={<Login />} />
         </Route>
