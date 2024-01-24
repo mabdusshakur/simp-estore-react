@@ -7,8 +7,8 @@ import SearchComponent from "./SearchComponent";
 import http from "../axios";
 const navigation = [
     { name: 'Home', href: '/', current: false, visible: true },
-    { name: 'Cart', href: '/cart', current: false, visible: true },
-    { name: 'Wishlist', href: '/wishlist', current: false, visible: true },
+    { name: 'Cart', href: '/cart', current: false, visible: false },
+    { name: 'Wishlist', href: '/wishlist', current: false, visible: false },
     { name: 'Dashboard', href: '/admin/dashboard', current: false, visible: true, admin: true },
     { name: 'Login', href: '/login', current: false, visible: true },
     { name: 'Register', href: '/register', current: false, visible: true },
@@ -39,7 +39,7 @@ export default function Navbar() {
             pathname.current = false;
         }
     });
-    if (isLoggedIn) {
+    if (isLoggedIn()) {
         navigation.forEach((pathname) => {
             if (pathname.href === '/login' || pathname.href === '/register') {
                 pathname.visible = false;

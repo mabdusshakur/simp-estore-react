@@ -28,5 +28,8 @@ export const isLoggedIn = () => {
 
 export const isAdmin = () => {
   const user = getUser();
+  if (!user) {
+    return false;
+  }
   return user.is_admin;
 };
