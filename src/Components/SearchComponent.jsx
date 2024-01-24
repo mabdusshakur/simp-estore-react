@@ -1,11 +1,12 @@
 import { useState } from "react";
 import http from "../axios";
+import { Link } from "react-router-dom";
 
 function SearchComponent() {
     const [search, setSearch] = useState("");
     const [products, setProducts] = useState([]);
 
-    const handleSearch = async(e) => {
+    const handleSearch = async (e) => {
         setSearch(e.target.value);
         if (e.target.value.length > 2) {
             const res = await http.get(`/products?search=${search}`);
@@ -25,7 +26,9 @@ function SearchComponent() {
                     <ul className="absolute mt-2 py-2 bg-white border border-gray-300 rounded-lg shadow-lg">
                         {products.map((product) => (
                             <li key={product.id} className="px-4 py-2 hover:bg-gray-100">
-                                {product.name}
+                                <Link to={`/product-details/${product.id}`}>
+                                    {product.name}
+                                </Link>
                             </li>
                         ))}
                     </ul>

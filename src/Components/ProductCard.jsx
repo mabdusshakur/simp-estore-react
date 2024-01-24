@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import http from "../axios";
 import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function ProductCard(props) {
     const { id, name, price, images } = props;
@@ -39,13 +40,13 @@ function ProductCard(props) {
     return (
         <>
             <div className="max-w-60 mx-1 my-1 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-500">
-                <a href="#">
+                <Link to={`/product-details/${id}`}>
                     <img className="p-1 rounded-t-lg" src={images[0].path.replace(/\\\\/, '\\')} alt="product image" />
-                </a>
+                </Link>
                 <div className="px-5 pb-5">
-                    <a href="#">
+                    <Link to={`/product-details/${id}`}>
                         <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{trimmedName}</h5>
-                    </a>
+                    </Link>
                     <div className="flex items-center justify-between">
                         <span className="text-sm p-1 font-bold text-gray-900 dark:text-white">${price}</span>
                         <FaHeart className="text-xl text-red-500 cursor-pointer" id="wishlist" onClick={handleWishlist} />
