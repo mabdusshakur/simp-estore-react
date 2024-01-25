@@ -45,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Home />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
 
-        <Route path="/all-products/:category-id?/:sub-category-id?" element={<AllProducts />} />
+        <Route path="/all-products/:categoryId?/:subCategoryId?" element={<AllProducts />} />
         
         <Route path="/login" element={<PreventIfAuthenticated />} >
           <Route index element={<Login />} />

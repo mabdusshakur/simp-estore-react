@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import http from '../../axios';
+import { Link } from 'react-router-dom';
 
 function CategoryTree() {
     const [showSubItems, setShowSubItems] = useState([]);
@@ -34,7 +35,8 @@ function CategoryTree() {
                             <li className="py-2" key={index}>
                                 <div className="flex items-center space-x-4">
                                     <span className="text-md font-medium" onClick={() => toggleSubItems(index)}>
-                                        {category.name}
+                                        <Link to={`/all-products/${category.id}`}>{category.name}</Link>
+                                        <span className='text-sm'> : - Show Sub-Cate </span>
                                     </span>
                                 </div>
                                 {showSubItems[index] && (
@@ -42,7 +44,7 @@ function CategoryTree() {
                                         {category.sub_categories.map((subCategory, subIndex) => (
                                             <li className="py-2" key={subIndex}>
                                                 <div className="flex items-center space-x-4">
-                                                    <span className="text-sm font-medium">{subCategory.name}</span>
+                                                    <Link to={`/all-products/${category.id}/${subCategory.id}`} className="text-sm font-medium">{subCategory.name}</Link>
                                                 </div>
                                             </li>
                                         ))}
