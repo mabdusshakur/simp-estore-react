@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import RecentProduct from "../Components/Display/RecentProduct";
+import AllProductsDisplay from "../Components/Display/AllProductsDisplay";
 
 function AllProducts() {
     const { categoryId, subCategoryId } = useParams();
@@ -9,15 +10,15 @@ function AllProducts() {
             {
                 !categoryId ? (
                     <div className="container mx-auto mt-2 bg-gray-800 rounded-xl">
-                        <h1>All Products</h1>
+                        <AllProductsDisplay />
                     </div>
                 ) : categoryId && !subCategoryId ? (
                     <div className="container mx-auto mt-2 bg-gray-800 rounded-xl">
-                        <h1>Category {categoryId} Products</h1>
+                        <AllProductsDisplay categoryId={categoryId} />
                     </div>
                 ) : (
                     <div className="container mx-auto mt-2 bg-gray-800 rounded-xl">
-                        <h1>Sub Category {subCategoryId} Products</h1>
+                        <AllProductsDisplay categoryId={categoryId} subCategoryId={subCategoryId}/>
                     </div>
                 )
             }
