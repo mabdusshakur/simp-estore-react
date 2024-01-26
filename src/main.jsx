@@ -25,6 +25,7 @@ import Profile from './Pages/ProfilePage.jsx';
 import ProductDetails from './Pages/ProductDetailsPage.jsx';
 import Logout from './Pages/LogoutPage.jsx';
 import AllProducts from './Pages/AllProductsPage.jsx';
+import Navbar2 from './Components/Navbar2.jsx';
 
 const ProtectedRoute = () => {
   const token = getToken();
@@ -39,7 +40,8 @@ const PreventIfAuthenticated = () => {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Navbar2 />
 
       <Routes>
         <Route path="/" element={<Home />} />
