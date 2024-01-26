@@ -40,15 +40,15 @@ const PreventIfAuthenticated = () => {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <Navbar /> */}
-      <Navbar2 />
+      <Navbar />
+      {/* <Navbar2 /> */}
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
 
         <Route path="/all-products/:categoryId?/:subCategoryId?" element={<AllProducts />} />
-        
+
         <Route path="/login" element={<PreventIfAuthenticated />} >
           <Route index element={<Login />} />
         </Route>
@@ -110,7 +110,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Route>
 
         <Route path="/logout" element={<ProtectedRoute />} >
-        <Route index element={<Logout />} />
+          <Route index element={<Logout />} />
         </Route>
 
       </Routes>
