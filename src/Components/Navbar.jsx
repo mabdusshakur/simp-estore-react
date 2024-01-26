@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { isAdmin, isLoggedIn } from "../authManager";
 import SearchComponent from "./SearchComponent";
 import http from "../axios";
+import CategoryTree2 from "./Display/CategoryTree2";
 const navigation = [
     { name: 'Home', href: '/', current: false, visible: true },
     { name: 'Cart', href: '/cart', current: false, visible: false },
@@ -72,6 +73,9 @@ export default function Navbar() {
                                         <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                                     )}
                                 </Disclosure.Button>
+                            </div>
+                            <div className="flex flex-shrink-0 items-center">
+                                <CategoryTree2 />
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
