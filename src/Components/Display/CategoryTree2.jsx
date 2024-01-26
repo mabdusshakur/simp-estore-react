@@ -41,11 +41,11 @@ function CategoryTree2() {
                         <div key={index}>
 
                             <div className="flex items-center px-6 py-3 hover:bg-gray-100 transition" key={index} onMouseOver={() => toggleSubCategoryList(index)} onMouseLeave={hideSubCategoryList} >
-                                <span className="text-gray-600 text-sm">
+                                <span className="text-gray-600 text-sm" >
                                     <Link to={`/all-products/${category.id}`}>{category.name}</Link>
                                 </span>
                                 {showSubCategoryList[index] && (
-                                    <div className="absolute left-full top-0 bg-white shadow-md py-3 px-6"  >
+                                    <div className="absolute left-full top-0 bg-white shadow-md py-3 px-6" onMouseOver={() => toggleSubCategoryList(index)}  >
                                         <ul className="space-y-2">
                                             {category.sub_categories.map((subCategory, subIndex) => (
                                                 <li key={subIndex}>
@@ -58,6 +58,8 @@ function CategoryTree2() {
                                     </div>
                                 )}
                             </div>
+
+
                         </div>
                     ))}
                 </div>
